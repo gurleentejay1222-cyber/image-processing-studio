@@ -1,7 +1,8 @@
 # Image Processing Studio
 
 A Flutter web application for basic image editing.
-
+## screenshot
+![App Screenshot](screenshots/home_screen.png)
 ## Features
 - Upload image
 - Gray filter
