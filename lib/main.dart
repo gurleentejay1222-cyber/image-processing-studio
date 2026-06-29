@@ -3,6 +3,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image/image.dart' as img;
 import 'package:image_picker/image_picker.dart';
+import 'package:file_saver/file_saver.dart';
 
 void main() {
   runApp(const ImageStudioApp());
@@ -146,6 +147,23 @@ void applyBlurFilter() {
 
   });
 }
+Future<void> saveImage() async {
+
+  if (imageBytes == null) return;
+
+  await FileSaver.instance.saveFile(
+    name: "edited_image",
+    bytes: imageBytes!,
+    
+    mimeType: MimeType.other,
+  );
+
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text("Image Saved Successfully"),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -215,6 +233,10 @@ void applyBlurFilter() {
               ElevatedButton(
                 onPressed: resetImage,
                 child: const Text("Reset"),
+              ),
+              ElevatedButton(
+                onPressed: saveImage,
+                child: const Text("Save"),
               ),
 
             ],
